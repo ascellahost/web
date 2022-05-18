@@ -108,7 +108,7 @@
 		color: deeppink;
 	}
 	:global(body) {
-		background-color: midnightblue;
+		background-color: slategrey;
 		background-image: none !important;
 	}
 	.bar {

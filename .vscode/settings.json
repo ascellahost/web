@@ -5,7 +5,7 @@
   "editor.linkedEditing": true,
   "html.autoClosingTags": true,
   "[svelte]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "svelte.enable-ts-plugin": true,
   "svelte.plugin.svelte.enable": true

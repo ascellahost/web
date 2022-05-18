@@ -50,23 +50,21 @@
 		}
 	];
 	import '../css/index.scss';
+	import Stats from '$lib/components/Stats.svelte';
 
 	$: reviews = [];
-	$: stats = {} as Record<string,string>;
-	onMount(()=>{
-		AOS.init()
-		console.log('AOS Mounted')
-	})
+
 	onMount(async () => {
-		const [module, revs, stat] = await Promise.all([
-			import('svelte-carousel'),
-			getReviews(),
-			getStats()
-		]);
+		AOS.init();
+		const [module, revs] = await Promise.all([import('svelte-carousel'), getReviews()]);
 		Carousel = module.default;
 		reviews = revs;
-		stats = stat;
 	});
+	let stats = getStats() as Promise<{
+		total_domains: string;
+		total_uploads: string;
+		total_users: string;
+	}>;
 </script>
 
 <div class="mx-auto">
@@ -77,36 +75,28 @@
 				A <b>fast</b> image uploader made for <b>all</b> platforms.
 			</h2>
 			<a href="https://docs.ascella.host/signup">
-				<button data-aos="fade-up" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full duration-150"
+				<button
+					data-aos="fade-up"
+					class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full duration-150"
 					>Get started</button
 				>
 			</a>
 		</div>
-		{#if stats.total_users}
+		{#await stats}
+			<Stats />
+		{:then stats}
+			<Stats {stats} />
+		{:catch err}
 			<div class="flex md:flex-row flex-col justify-center gap-4 md:p-10 p-4">
 				<div
 					class="p-8 bg-slate-800 rounded-lg text-white text-center lg:px-40 md:px-16 px-10"
 					data-aos="fade-up"
 				>
-					<p><b class="cursor-default">Users</b></p>
-					<p class="p-1 cursor-default">{stats.total_users}</p>
-				</div>
-				<div
-					class="p-8 bg-slate-800 rounded-lg text-white text-center lg:px-40 md:px-16 px-10"
-					data-aos="fade-up"
-				>
-					<p><b class="cursor-default">Uploads</b></p>
-					<p class="p-1 cursor-default">{stats.total_uploads}</p>
-				</div>
-				<div 
-					class="p-8 bg-slate-800 rounded-lg text-white text-center lg:px-40 md:px-16 px-10"
-					data-aos="fade-up"
-				>
-					<p><b class="cursor-default">Domains</b></p>
-					<p class="p-1 cursor-default">{stats.total_domains}</p>
+					<p><b class="cursor-default">Failed to load stats</b></p>
+					<p class="p-1 cursor-default">{err}</p>
 				</div>
 			</div>
-		{/if}
+		{/await}
 		<div>
 			{#each features as feature, index}
 				<div
@@ -151,9 +141,9 @@
 									src={`${review.avatar}`}
 									alt={review.name}
 									on:error={(event) => {
-										//@ts-ignore - 
+										//@ts-ignore -
 										event.target.src = 'https://cdn.discordapp.com/embed/avatars/5.png';
-										//@ts-ignore - 
+										//@ts-ignore -
 										event.onerror = null;
 									}}
 								/>

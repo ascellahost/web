@@ -18,7 +18,7 @@
 		],
 		[
 			{
-				href: 'https://github.com/Tricked-dev/ascella',
+				href: 'https://github.com/ascellahost',
 				a: 'Github'
 			},
 			{
@@ -30,18 +30,18 @@
 				a: 'Report'
 			}
 		],
-	
+		[
+			{
+				href: '/domains',
+				a: 'Domains'
+			},
+			{
+				href: 'https://discord.gg/KkMKCchJb8',
+				a: 'Discord'
+			}
+		]
 	];
-	const otherLinks = [
-		{
-			href: '/domains',
-			a: 'Domains'
-		},
-		{
-			href: '/contributors',
-			a: 'Contributors'
-		}
-	];
+
 	const topLinks = [
 		{
 			href: 'https://discord.gg/KkMKCchJb8',
@@ -57,17 +57,13 @@
 		type: 'website',
 		description:
 			'Ascella Uploader is an extremely fast image uploader built with the newest technologies.  ' +
-			'Ascella is OpenSource you can find the source code at https://github.com/Tricked-dev/ascella',
+			'Ascella is OpenSource you can find the source code at https://github.com/ascellahost',
 		title: 'Ascella Uploader - The fastest image uploader',
 		keywords: 'javascript typescript programming discord matrix',
 		viewport: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no',
 		site_name: 'tricked#3777',
 		locale: 'en_US'
 	};
-	let expended = false;
-	function setExpended() {
-		expended = !expended;
-	}
 </script>
 
 <svelte:head>
@@ -101,26 +97,12 @@
 			<div class="flex items-center">
 				<div class="flex flex-col md:flex-row gap-4 p-2">
 					<a class="text-slate-200 text-lg px-2 py-0.5" href="/"><b>Ascella.host</b></a>
-					
 					{#each topLinks as link}
 						<a
-							class= "hover:text-slate-100 text-slate-300 text-lg hover:bg-slate-800 rounded-lg px-2 py-0.5 duration-150"
+							class="hover:text-slate-100 text-slate-300 text-lg hover:bg-slate-800 rounded-lg px-2 py-0.5 duration-150"
 							href={link.href}>{link.a}</a
 						>
 					{/each}
-				</div>
-				<div class="md:inline hidden">
-					{#if expended}
-						<ul class="flex gap-2 flex-col md:flex-row px-2 pb-1">
-							{#each otherLinks as link (link.a)}
-								<li transition:scale={{ delay: 250, duration: 300, easing: quintOut }}>
-									<a href={link.href} class="text-slate-300 underline hover:text-teal-500"
-										>{link.a}</a
-									>
-								</li>
-							{/each}
-						</ul>
-					{/if}
 				</div>
 			</div>
 		</div>
@@ -129,7 +111,7 @@
 
 	<div class="pb-7" />
 	<div
-		class="transform no-underline text-gray-300 hover:text-white min-h-full border-t-2 border-gray-300 hover:border-white pt-6 footer bg-slate-700"
+		class="transform no-underline text-gray-300 hover:text-white min-h-full border-t-2 border-gray-300 hover:border-white pt-6 footer"
 		transition:fly={{ x: 1500, y: 0, duration: 800 }}
 	>
 		<div class="flex-auto flex list-none">
@@ -158,13 +140,4 @@
 	:global(body) {
 		@apply bg-gradient-to-br from-cyan-600 to-sky-600;
 	}
-
-	/* .a-btn {
-		@apply duration-500 block border-b-4 border-blue-300 hover:border-teal-500 mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-teal-800 mr-2;
-	}
-	.dropdown:focus-within .dropdown-menu {
-		opacity: 1;
-		transform: translate(0) scale(1);
-		visibility: visible;
-	} */
 </style>
