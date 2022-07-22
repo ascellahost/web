@@ -2,11 +2,12 @@
 </script>
 
 <script lang="ts">
-	import '@fontsource/roboto';
-	import '@fontsource/material-icons';
-	import '@fontsource/roboto-mono';
 	const bottomLinks = [
 		[
+			{
+				href: 'https://docs.ascella.host',
+				a: 'Docs'
+			},
 			{
 				href: 'https://docs.ascella.host/rules',
 				a: 'Rules'
@@ -136,8 +137,4 @@
 	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
-
-	:global(body) {
-		@apply bg-gradient-to-br from-cyan-600 to-sky-600;
-	}
 </style>
