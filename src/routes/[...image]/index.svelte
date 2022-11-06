@@ -67,7 +67,7 @@
 	<meta property="theme-color" content={embed.color} />
 	<meta property="og:author" content={user_name} />
 
-	<meta property="og:image" content={`https://ascella.wtf/v2/ascella/view/${url}.png`} />
+	<meta property="og:image" content={`https://api.ascella.host/v2/ascella/view/${url}.png`} />
 	<meta property="og:type" content="website" />
 	<meta property="twitter:card" content="summary_large_image" />
 
@@ -81,8 +81,8 @@
 
 <div class="main min-w-screen w-full min-h-screen h-full p-0">
 	<div class="box mx-auto text-white">
-		<a href={`https://ascella.wtf/v2/ascella/view/${url}.png`} target="_blank">
-			<img class="image" alt="" src={`https://ascella.wtf/v2/ascella/view/${url}.png`} />
+		<a href={`https://api.ascella.host/v2/ascella/view/${url}.png`} target="_blank">
+			<img class="image" alt="" src={`https://api.ascella.host/v2/ascella/view/${url}.png`} />
 		</a>
 		<div class="bar ">
 			<p>Views {views}</p>
